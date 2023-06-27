@@ -16,7 +16,7 @@ import (
 	"time"
 
 	"github.com/grafana/grafana-plugin-sdk-go/backend"
-	"github.com/yesoreyeram/grafana-infinity-datasource/pkg/models"
+	"github.com/yesoreyeram/grafana-infinity-datasource/pkg/models" //you will need to fork this to add the AuthenticationMethod you proposed
 )
 
 type Client struct {
@@ -103,12 +103,22 @@ func replaceSect(input string, settings models.InfinitySettings, includeSect boo
 }
 
 func (client *Client) req(ctx context.Context, url string, body io.Reader, settings models.InfinitySettings, query models.Query, requestHeaders map[string]string) (obj any, statusCode int, duration time.Duration, err error) {
-	req, _ := GetRequest(settings, body, query, requestHeaders, true)
-	startTime := time.Now()
-	if !CanAllowURL(req.URL.String(), settings.AllowedHosts) {
+	if !CanAllowURL(url, settings.AllowedHosts) {
 		backend.Logger.Error("url is not in the allowed list. make sure to match the base URL with the settings", "url", req.URL.String())
 		return nil, http.StatusUnauthorized, 0, errors.New("requested URL is not allowed. To allow this URL, update the datasource config Security -> Allowed Hosts section")
 	}
+	startTime := time.Now()
+	// Use MercuryClient for zCap Authenticated Requests
+	if settings.AuthenticationMethod == models.AuthenticationMethodZCAP {
+		//response, err := mercuryclient.go download url
+		res.StatusCode = 200;
+		duration = time.Since(startTime)
+		return string(response), res.StatusCode, duration, err
+	} 
+	// Standard Grafana Infinity Requests
+	req, _ := GetRequest(settings, body, query, requestHeaders, true)
+	
+
 	res, err := client.HttpClient.Do(req)
 	duration = time.Since(startTime)
 	if res != nil {

@@ -105,14 +105,7 @@ func ApplyHeadersFromQuery(query models.Query, settings models.InfinitySettings,
 func ApplyZCapAuth(settings models.InfinitySettings, req *http.Request, includeSect bool) *http.Request {
 
 	if settings.AuthenticationMethod == models.AuthenticationMethodZCAP {
-		//zcapPath := filepath.Base(dummyHeader2) //returns file name after the last slash
-		zcapKeyHeader := dummyHeader
-		if includeSect {
-			zcapKeyHeader = settings.ZCapSeed
-			//zcapPath = filepath.Base(settings.ZCapJsonPath)
-		}
-		req.Header.Add(settings.ZCapSeed, zcapKeyHeader)
-		//req.Header.Add(settings.ZCapJsonPath, zcapPath)  this is setting the header
+		//noop - if we determine that this is not needed, we can probably delete the entire function
 	}
 	return req
 }
