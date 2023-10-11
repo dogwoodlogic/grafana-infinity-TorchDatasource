@@ -9,7 +9,8 @@ import { JoinVariable } from './Join';
 import { RandomVariable } from './Random';
 import { UnixTimeStampVariable } from './UnixTimeStamp';
 import type { MetricFindValue, VariableQuery, VariableQueryInfinity } from './../../types';
-import type { SelectableValue } from '@grafana/data/types';
+// eslint-disable-next-line no-duplicate-imports
+import type { SelectableValue } from '@grafana/data';
 
 export const getTemplateVariablesFromResult = (res: any): MetricFindValue[] => {
   if (isDataFrame(res) && res.fields.length > 0) {

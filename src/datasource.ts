@@ -14,7 +14,8 @@ import { migrateQuery } from './migrate';
 import { isBackendQuery } from './app/utils';
 import { reportQuery, reportHealthCheck } from './utils/analytics';
 import type { InfinityInstanceSettings, InfinityOptions, InfinityQuery, MetricFindValue, VariableQuery } from './types';
-import type { DataFrame, DataQueryRequest, DataQueryResponse, ScopedVars, TimeRange } from '@grafana/data/types';
+// eslint-disable-next-line no-duplicate-imports
+import type { DataFrame, DataQueryRequest, DataQueryResponse, ScopedVars, TimeRange } from '@grafana/data';
 
 export class Datasource extends DataSourceWithBackend<InfinityQuery, InfinityOptions> {
   constructor(public instanceSettings: InfinityInstanceSettings) {
@@ -23,6 +24,8 @@ export class Datasource extends DataSourceWithBackend<InfinityQuery, InfinityOpt
       QueryEditor: AnnotationsEditor,
     };
   }
+  // query(request: DataQueryRequest<TQuery>): Observable<DataQueryResponse>;
+
   query(options: DataQueryRequest<InfinityQuery>): Observable<DataQueryResponse> {
     return new Observable<DataQueryResponse>((subscriber) => {
       let request = getUpdatedDataRequest(options, this.instanceSettings);

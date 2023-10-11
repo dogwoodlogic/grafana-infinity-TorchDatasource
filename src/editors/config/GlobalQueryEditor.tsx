@@ -5,7 +5,8 @@ import React, { useState } from 'react';
 import { InfinityQueryEditor } from './../query/infinityQuery';
 import { Datasource } from './../../datasource';
 import type { GlobalInfinityQuery, InfinityOptions, InfinityQuery } from './../../types';
-import type { DataSourcePluginOptionsEditorProps, DataSourceSettings } from '@grafana/data/types';
+// eslint-disable-next-line no-duplicate-imports
+import type { DataSourcePluginOptionsEditorProps, DataSourceSettings } from '@grafana/data';
 
 const DefaultGlobalQuery: InfinityQuery = {
   refId: '',

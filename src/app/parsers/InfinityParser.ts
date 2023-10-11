@@ -4,7 +4,8 @@ import { isDataQuery } from './../utils';
 import { filterResults } from './filter';
 import { normalizeColumns } from './utils';
 import type { GrafanaTableRow, InfinityColumn, InfinityQuery, tableResult, timeSeriesResult } from './../../types';
-import type { DataFrame, PreferredVisualisationType } from '@grafana/data/types';
+// eslint-disable-next-line no-duplicate-imports
+import type { DataFrame, PreferredVisualisationType } from '@grafana/data';
 
 export class InfinityParser<T extends InfinityQuery> {
   target: T;

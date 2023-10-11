@@ -1,7 +1,8 @@
 import { PluginType } from '@grafana/data';
 import { DataSourceWithBackend } from '@grafana/runtime';
 import { Datasource } from './datasource';
-import type { DataSourceInstanceSettings } from '@grafana/data/types';
+// eslint-disable-next-line no-duplicate-imports
+import type { DataSourceInstanceSettings } from '@grafana/data';
 
 jest.mock('@grafana/runtime', () => ({
   ...(jest.requireActual('@grafana/runtime') as unknown as object),
@@ -41,6 +42,7 @@ const DummyDatasource: DataSourceInstanceSettings = {
     },
   },
   jsonData: {},
+  readOnly: false
 };
 
 describe('metricFindQuery', () => {

@@ -7,7 +7,8 @@ import { OAuthInputsEditor } from './OAuthInput';
 import { OthersAuthentication } from './OtherAuthProviders';
 import { AWSRegions } from './../../constants';
 import type { APIKeyType, AuthType, InfinityOptions, InfinitySecureOptions } from './../../types';
-import type { DataSourcePluginOptionsEditorProps, SelectableValue } from '@grafana/data/types';
+// eslint-disable-next-line no-duplicate-imports
+import type { DataSourcePluginOptionsEditorProps, SelectableValue } from '@grafana/data';
 
 const authTypes: Array<SelectableValue<AuthType | 'others'> & { logo?: string }> = [
   { value: 'none', label: 'No Auth' },

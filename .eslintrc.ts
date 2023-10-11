@@ -12,5 +12,6 @@ module.exports = {
         alphabetize: { order: 'asc' },
       },
     ],
+    'no-duplicate-imports': 'off'
   },
 };

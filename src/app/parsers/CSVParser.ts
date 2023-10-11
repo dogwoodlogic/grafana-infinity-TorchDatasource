@@ -1,4 +1,4 @@
-import parse from 'csv-parse/lib/sync';
+import {parse} from 'csv-parse';
 import { forEach, get } from 'lodash';
 import { InfinityParser } from './InfinityParser';
 import { getColumnsFromObjectArray, getValue } from './utils';
